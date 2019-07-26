@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         val viewModel = ViewModelProviders.of(this).get(CoffeeViewModel::class.java)
 
         val binding : ActivityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
 
@@ -26,9 +27,23 @@ class MainActivity : AppCompatActivity() {
 
         MyLifeCycleObserver(this)
 
+        setCallback(object : OnLoginListener {
+            override fun onLogin() {
+
+            }
+        })
+
+
+    }
+
+    fun setCallback(d: OnLoginListener){
+        d.onLogin()
     }
 }
 
+interface OnLoginListener{
+    fun onLogin()
+}
 
 @Singleton @Component interface CoffeeShop{
     fun coffeeMaker() : CoffeeMaker

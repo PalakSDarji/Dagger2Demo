@@ -8,6 +8,7 @@ class CoffeeViewModel : ViewModel(){
 
     var number : MutableLiveData<Int> = MutableLiveData()
     var coffeeType : Int = 2
+    var name : MutableLiveData<String> = MutableLiveData<String>()
 
     fun makeIncrementNumber() {
         var value = number.value

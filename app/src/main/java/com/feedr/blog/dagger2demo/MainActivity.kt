@@ -12,6 +12,12 @@ import javax.inject.Singleton
 
 class MainActivity : AppCompatActivity() {
 
+    var myBoolean : (String, Int) -> Boolean = { s, i ->
+        s.length > i
+    }
+
+    val apply5 : ((Int) -> Int) -> Int = { it(2)}
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,17 +33,58 @@ class MainActivity : AppCompatActivity() {
 
         MyLifeCycleObserver(this)
 
-        setCallback(object : OnLoginListener {
-            override fun onLogin() {
 
-            }
-        })
+        val nameObserver = Observer<String>{
+            println("NewName: $it")
+        }
 
+        viewModel.name.observe(this,nameObserver)
+
+        println("boolean is : " + setCallback("sdad",3))
+
+
+        setListener(1) { v -> printMe(v)}
+
+        println("boolean iss : "+apply5{it * it})
+
+        inlineFun { println("calling inline functions") }
+
+        doAsync {
+            op1()
+            op2()
+        }
+    }
+
+    private fun op2() {
 
     }
 
-    fun setCallback(d: OnLoginListener){
-        d.onLogin()
+    private fun op1() {
+
+    }
+
+    private fun setListener(i: Int, s : (v: String) -> Unit){
+        //println("setListener : " + s("asd"))
+        class My{
+            init {
+                println("My created")
+            }
+        }
+
+        val v: My = My()
+    }
+
+    fun setCallback(s: String, i: Int) : Boolean{
+        return myBoolean(s,i)
+    }
+
+    fun printMe(v : String){
+        println("v is $v")
+    }
+
+    inline fun inlineFun(myFun : ()-> Unit){
+        myFun()
+        println("Code inside inline fncton")
     }
 }
 
@@ -47,4 +94,8 @@ interface OnLoginListener{
 
 @Singleton @Component interface CoffeeShop{
     fun coffeeMaker() : CoffeeMaker
+}
+
+inline fun doAsync(crossinline f: () -> Unit){
+    Thread {f()}.start()
 }

@@ -16,7 +16,7 @@ class UserViewModel : ViewModel() {
         userList ->
         run{
             if(!userList.isNullOrEmpty()){
-                "user ${userList[userList.size-1].name} added"
+                "user ${userList[userList.size-1].name} added."
             }
             else null
         }

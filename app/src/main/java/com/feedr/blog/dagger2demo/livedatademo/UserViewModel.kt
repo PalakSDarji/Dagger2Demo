@@ -10,18 +10,20 @@ class UserViewModel : ViewModel() {
     private val query = MutableLiveData<String>()
     var userRepository = UserRepository()
     private var userData = MutableLiveData<User>()
-    private lateinit var listOfUsers :MutableLiveData<MutableList<User>>;
+    private var listOfUsers = userRepository.getAllUsers()
 
-    init {
-        listOfUsers = userRepository.getAllUsers()
-
+    var userDataTrans: LiveData<String?> = Transformations.map(listOfUsers) {
+        userList ->
+        run{
+            if(!userList.isNullOrEmpty()){
+                "user ${userList[userList.size-1].name} added"
+            }
+            else null
+        }
     }
-    var userDataTrans : LiveData<String> = Transformations.map(userData) {
-            user -> "user ${user.name} added"
-    }
 
-    var userSearchDataTrans : LiveData<List<User>> = Transformations.map(query){
-        userRepository.searchUserByName(it).value
+    var userSearchDataTrans : LiveData<MutableList<User>> = Transformations.switchMap(query){
+        userRepository.searchUserByName(it)
     }
 
     fun addUser(user: User) {
@@ -36,5 +38,9 @@ class UserViewModel : ViewModel() {
 
     fun getAllUsers() : MutableLiveData<MutableList<User>>{
         return listOfUsers
+    }
+
+    fun getSearchUserList() : LiveData<MutableList<User>>{
+        return userSearchDataTrans
     }
 }

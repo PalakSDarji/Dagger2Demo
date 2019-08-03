@@ -17,7 +17,7 @@ class UserRepository{
         if(searchedUserList.value?.isNotEmpty()!!) searchedUserList.value?.clear()
 
         for(user in userList.value!!){
-            if(user.name.startsWith(nameQuery)){
+            if(user.name.equals(nameQuery)){
                 searchedUserList.value?.add(user)
             }
         }

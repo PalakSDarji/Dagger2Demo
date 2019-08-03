@@ -17,8 +17,8 @@ import kotlinx.android.synthetic.main.layout_user_item.view.*
 
 class LiveDataDemoActivity : AppCompatActivity() {
 
-    lateinit var userViewModel : UserViewModel
-    private val userList: MutableList<User> = ArrayList()
+    private lateinit var userViewModel : UserViewModel
+    private val userList: MutableList<User> = mutableListOf()
     private val userSearchList: MutableList<User> = ArrayList()
     private lateinit var userWholeAdapter: UserAdapter
     private lateinit var userSearchAdapter: UserAdapter
@@ -34,17 +34,21 @@ class LiveDataDemoActivity : AppCompatActivity() {
         }
 
         userViewModel.getAllUsers().observe(this, Observer {
-            print("it isL " +it)
             if(userList.isNotEmpty()) userList.clear()
             userList.addAll(it)
             userWholeAdapter.notifyDataSetChanged()
         })
 
         userViewModel.userDataTrans.observe(this, Observer {
-            string -> Toast.makeText(this@LiveDataDemoActivity,string,Toast.LENGTH_LONG).show()
+            string ->
+            run {
+                if (!string.isNullOrEmpty()) {
+                    Toast.makeText(this@LiveDataDemoActivity, string, Toast.LENGTH_LONG).show()
+                }
+            }
         })
 
-        userViewModel.userSearchDataTrans.observe(this, Observer {
+        userViewModel.getSearchUserList().observe(this, Observer {
             if(userSearchList.isNotEmpty()) userSearchList.clear()
             userSearchList.addAll(it)
             userSearchAdapter.notifyDataSetChanged()

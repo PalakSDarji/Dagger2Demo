@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel
 
 class UserViewModel : ViewModel() {
 
+    private var selectedUserId = MutableLiveData<Int>()
     private val query = MutableLiveData<String>()
     var userRepository = UserRepository()
-    private var userData = MutableLiveData<User>()
     private var listOfUsers = userRepository.getAllUsers()
 
     var userDataTrans: LiveData<String?> = Transformations.map(listOfUsers) {
@@ -22,13 +22,20 @@ class UserViewModel : ViewModel() {
         }
     }
 
+    private var userData : LiveData<User> = Transformations.switchMap(selectedUserId){
+        selectedUserId ->
+        run{
+            userRepository.getUserById(selectedUserId)
+        }
+    }
+
     var userSearchDataTrans : LiveData<MutableList<User>> = Transformations.switchMap(query){
         userRepository.searchUserByName(it)
     }
 
-    fun addUser(user: User) {
+    /*fun addUser(user: User) {
         userData.value = user
-    }
+    }*/
 
     fun addUserToList(user: User){
         userRepository.addUserToRepo(user)
@@ -42,5 +49,13 @@ class UserViewModel : ViewModel() {
 
     fun getSearchUserList() : LiveData<MutableList<User>>{
         return userSearchDataTrans
+    }
+
+    fun setSelectedUserId(id: Int){
+        selectedUserId.value = id
+    }
+
+    fun getUserData() : LiveData<User>{
+        return userData
     }
 }

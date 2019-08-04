@@ -1,3 +1,3 @@
 package com.feedr.blog.dagger2demo.livedatademo
 
-data class User(var name: String, val age : Int)
+data class User(val id : Int,var name: String, val age : Int)

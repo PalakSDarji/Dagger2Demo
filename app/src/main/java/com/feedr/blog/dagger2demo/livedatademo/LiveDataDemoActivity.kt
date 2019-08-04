@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.feedr.blog.dagger2demo.R
 import kotlinx.android.synthetic.main.activity_live_data_demo.*
 import kotlinx.android.synthetic.main.layout_user_item.view.*
+import kotlin.random.Random
 
 class LiveDataDemoActivity : AppCompatActivity() {
 
@@ -26,6 +27,8 @@ class LiveDataDemoActivity : AppCompatActivity() {
     private lateinit var userWholeAdapter: UserAdapter
     private lateinit var userSearchAdapter: UserAdapter
 
+    private var i = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_live_data_demo)
@@ -33,7 +36,8 @@ class LiveDataDemoActivity : AppCompatActivity() {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
 
         btnAdd.setOnClickListener {
-            userViewModel.addUserToList(User(etName.text.toString(),12))
+            userViewModel.addUserToList(User(i,etName.text.toString(),12))
+            i++
         }
 
         userViewModel.getAllUsers().observe(this, Observer {
@@ -66,7 +70,15 @@ class LiveDataDemoActivity : AppCompatActivity() {
         userWholeAdapter = UserAdapter(this, userList)
         rcUsers.adapter = userWholeAdapter
         userWholeAdapter.onItemClick = { view,user ->
-            startActivity(Intent(this@LiveDataDemoActivity,UserDetailActivity::class.java))
+
+            when(view.id){
+                R.id.tvUserName ->{
+                    userViewModel.setSelectedUserId(user.id)
+                    val intent = Intent(this@LiveDataDemoActivity,UserDetailActivity::class.java)
+                    intent.putExtra("selectedUserId",user.id)
+                    startActivity(intent)
+                }
+            }
         }
 
         rcSearchUsers.layoutManager = LinearLayoutManager(this)
@@ -91,11 +103,14 @@ class UserAdapter(activity: Activity,val userList: MutableList<User>) : Recycler
 
     override fun onBindViewHolder(holder: UserHolder, position: Int) {
         holder.tvUserName.text = userList[position].name
+        holder.tvUserId.text = userList[position].id.toString()
+
     }
 
     inner class UserHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         val tvUserName: TextView = itemView.tvUserName
+        val tvUserId : TextView = itemView.tvUserId
 
         init {
             tvUserName.setOnClickListener {

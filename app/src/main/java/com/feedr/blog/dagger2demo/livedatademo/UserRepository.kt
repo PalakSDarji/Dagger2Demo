@@ -28,4 +28,15 @@ class UserRepository{
     fun getAllUsers() : MutableLiveData<MutableList<User>>{
         return userList
     }
+
+    fun getUserById(selectedUserId: Int?) : MutableLiveData<User>? {
+
+        for(user in userList.value!!){
+            if(user.id == selectedUserId){
+                return MutableLiveData(user)
+            }
+        }
+
+        return null
+    }
 }

@@ -1,11 +1,14 @@
 package com.feedr.blog.dagger2demo.livedatademo
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -30,7 +33,7 @@ class LiveDataDemoActivity : AppCompatActivity() {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
 
         btnAdd.setOnClickListener {
-            userViewModel.addUserToList(User(etName.text.toString()))
+            userViewModel.addUserToList(User(etName.text.toString(),12))
         }
 
         userViewModel.getAllUsers().observe(this, Observer {
@@ -62,6 +65,9 @@ class LiveDataDemoActivity : AppCompatActivity() {
         rcUsers.setHasFixedSize(true)
         userWholeAdapter = UserAdapter(this, userList)
         rcUsers.adapter = userWholeAdapter
+        userWholeAdapter.onItemClick = { view,user ->
+            startActivity(Intent(this@LiveDataDemoActivity,UserDetailActivity::class.java))
+        }
 
         rcSearchUsers.layoutManager = LinearLayoutManager(this)
         rcSearchUsers.setHasFixedSize(true)
@@ -72,6 +78,7 @@ class LiveDataDemoActivity : AppCompatActivity() {
 
 class UserAdapter(activity: Activity,val userList: MutableList<User>) : RecyclerView.Adapter<UserAdapter.UserHolder>() {
 
+    var onItemClick: ((View,User) -> Unit)? = null
     private var inflater = LayoutInflater.from(activity)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
@@ -86,8 +93,14 @@ class UserAdapter(activity: Activity,val userList: MutableList<User>) : Recycler
         holder.tvUserName.text = userList[position].name
     }
 
+    inner class UserHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-    class UserHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val tvUserName = itemView.tvUserName
+        val tvUserName: TextView = itemView.tvUserName
+
+        init {
+            tvUserName.setOnClickListener {
+                onItemClick?.invoke(tvUserName,userList[adapterPosition])
+            }
+        }
     }
 }

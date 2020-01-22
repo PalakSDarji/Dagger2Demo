@@ -9,15 +9,17 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".coroutines.CoroutineDemoActivity"></activity>
-        <activity android:name=".notification.NotifActivity"></activity>
-        <activity android:name=".livedatademo.UserDetailActivity"></activity>
-        <activity android:name=".livedatademo.LiveDataDemoActivity">
+        <activity android:name=".coroutines.CoroutineDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".notification.NotifActivity"></activity>
+        <activity android:name=".livedatademo.UserDetailActivity"></activity>
+        <activity android:name=".livedatademo.LiveDataDemoActivity">
+
         </activity>
         <activity android:name=".DSLActivity"></activity>
         <activity android:name=".MainActivity"></activity>

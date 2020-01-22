@@ -6,4 +6,10 @@
         android:layout_height="match_parent"
         tools:context=".coroutines.CoroutineDemoActivity">
 
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:background="@android:color/holo_green_light"
+        android:layout_height="100dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

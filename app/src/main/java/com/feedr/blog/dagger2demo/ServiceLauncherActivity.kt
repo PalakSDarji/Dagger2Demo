@@ -9,8 +9,8 @@ import kotlinx.android.synthetic.main.layout_service_launcher.*
 
 class ServiceLauncherActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_service_launcher)
 
         btnStartService.setOnClickListener(View.OnClickListener {
@@ -20,5 +20,9 @@ class ServiceLauncherActivity : AppCompatActivity() {
         btnStopService.setOnClickListener(View.OnClickListener {
             stopService(Intent(this@ServiceLauncherActivity, CustomService::class.java))
         })
+
+        btnGoBind.setOnClickListener{
+            startActivity(Intent(this, BinderActivity::class.java))
+        }
     }
 }

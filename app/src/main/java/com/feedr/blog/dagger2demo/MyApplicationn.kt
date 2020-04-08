@@ -1,11 +1,15 @@
+package com.feedr.blog.dagger2demo
+
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
 
-class MyApp : Application() {
+class MyApplicationn : Application() {
 
-    val CHANNEL_ID : String = "MyAppMainChannel"
+    companion object{
+        val CHANNEL_ID : String = "MyAppMainChannel"
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -18,9 +22,5 @@ class MyApp : Application() {
             val notificationManager = getSystemService(NotificationManager::class.java)
             notificationManager.createNotificationChannel(notificationChannel)
         }
-    }
-
-    override fun onTrimMemory(level: Int) {
-        super.onTrimMemory(level)
     }
 }

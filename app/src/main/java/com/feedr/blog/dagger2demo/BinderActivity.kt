@@ -1,6 +1,5 @@
 package com.feedr.blog.dagger2demo
 
-import android.app.Service
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -8,6 +7,7 @@ import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_binder.*
 
@@ -22,8 +22,9 @@ class BinderActivity : AppCompatActivity() {
         setContentView(R.layout.activity_binder)
 
         btnBindService.setOnClickListener(View.OnClickListener {
-            bindService(Intent(this@BinderActivity, CustomService::class.java)
-                , serviceConnection, Context.BIND_AUTO_CREATE)
+            val intent = Intent(this@BinderActivity, CustomService::class.java)
+            bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+            onCustomClickListener.onCustomClick(3)
         })
 
         btnUnbindService.setOnClickListener(View.OnClickListener {
@@ -51,7 +52,15 @@ class BinderActivity : AppCompatActivity() {
             customService = (service as CustomService.MyBinder).getService()
             mServiceBound = true
         }
-
     }
 
+    private val onCustomClickListener = object : OnCustomClickListener {
+        override fun onCustomClick() {
+
+        }
+
+        override fun onCustomClick(position: Int) {
+            Toast.makeText(this@BinderActivity,"Pos is $position",Toast.LENGTH_LONG).show()
+        }
+    }
 }

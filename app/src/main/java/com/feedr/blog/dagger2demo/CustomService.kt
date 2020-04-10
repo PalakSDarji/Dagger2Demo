@@ -64,7 +64,7 @@ class CustomService : Service() {
     }
 
     inner class MyBinder : Binder() {
-        public fun getService() : CustomService {
+        fun getService() : CustomService {
             return this@CustomService
         }
     }

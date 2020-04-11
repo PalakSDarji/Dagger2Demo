@@ -20,9 +20,25 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            applicationIdSuffix '.debug'
+            debuggable true
+        }
     }
     dataBinding {
         enabled = true
+    }
+    flavorDimensions 'flavorDimen'
+    productFlavors {
+        free {
+            dimension = 'flavorDimen'
+            applicationId 'com.feedr.blog.dagger2demo.free'
+        }
+        paid {
+            dimension = 'flavorDimen'
+            applicationId 'com.feedr.blog.dagger2demo.paid'
+        }
     }
 }
 

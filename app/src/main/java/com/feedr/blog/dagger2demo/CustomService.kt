@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 
 
@@ -40,6 +41,7 @@ class CustomService : Service() {
 
         startForeground(1, notification)
 
+        Toast.makeText(this,"called From service",Toast.LENGTH_LONG).show()
         return START_NOT_STICKY
     }
 

@@ -40,6 +40,19 @@ android {
             applicationId 'com.feedr.blog.dagger2demo.paid'
         }
     }
+    splits {
+        density {
+            enable true
+            exclude "ldpi","xxhdpi"
+            compatibleScreens 'small','normal','large','xlarge'
+        }
+        abi {
+            enable true
+            reset()
+            include "x86", "x86_64","armeabi"
+            universalApk true
+        }
+    }
 }
 
 dependencies {

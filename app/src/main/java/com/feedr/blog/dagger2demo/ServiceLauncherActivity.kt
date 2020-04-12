@@ -24,5 +24,7 @@ class ServiceLauncherActivity : AppCompatActivity() {
         btnGoBind.setOnClickListener{
             startActivity(Intent(this, BinderActivity::class.java))
         }
+
+        println(Constants.type)
     }
 }

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "711323742384",
+    "firebase_url": "https://dagger2demo-346b7.firebaseio.com",
+    "project_id": "dagger2demo-346b7",
+    "storage_bucket": "dagger2demo-346b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711323742384:android:4c586963e426e836458b75",
+        "android_client_info": {
+          "package_name": "com.feedr.blog.dagger2demo.paid.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711323742384-24feruuaa1bs44ljd918q0oh0la4m99r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.feedr.blog.dagger2demo.paid.debug",
+            "certificate_hash": "c4c1294e57e98956afe04dabb0384da45558b502"
+          }
+        },
+        {
+          "client_id": "711323742384-trhha633d27gasom641kj6955tibfqha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdZZCZESafMSO810mhcbHv5i8Zt-DIsiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "711323742384-trhha633d27gasom641kj6955tibfqha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

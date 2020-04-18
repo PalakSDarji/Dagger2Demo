@@ -25,7 +25,8 @@ class ServiceLauncherActivity : AppCompatActivity() {
             startActivity(Intent(this, BinderActivity::class.java))
         }
 
-        if(Constants.type == "paid"){
+        //if(Constants.type == "paid"){
+        if(BuildConfig.BUILD_TIME == "0"){
             btnLogin.visibility = View.VISIBLE
             btnLogin.setOnClickListener {
                 startActivity(Intent(this@ServiceLauncherActivity, LoginActivity::class.java))

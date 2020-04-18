@@ -18,12 +18,16 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            buildConfigField("String", "BUILD_TYPE_MODE", '"free"')
+            buildConfigField("String", "BUILD_TIME", "\"0\"")
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         debug {
             applicationIdSuffix '.debug'
             debuggable true
+            buildConfigField("String", "BUILD_TIME", "\"0\"")
+            buildConfigField("String", "BUILD_TYPE_MODE", '"free"')
         }
     }
     dataBinding {
@@ -34,10 +38,14 @@ android {
         free {
             dimension = 'flavorDimen'
             applicationId 'com.feedr.blog.dagger2demo.free'
+            buildConfigField("String", "BUILD_TYPE_MODE", '"free"')
+            buildConfigField "String", "APP_VERSION_N", "\"0.0.1\""
         }
         paid {
             dimension = 'flavorDimen'
             applicationId 'com.feedr.blog.dagger2demo.paid'
+            buildConfigField("String", "BUILD_TYPE_MODE", '"paid"')
+            buildConfigField "String", "APP_VERSION_N", "\"0.0.1\""
         }
     }
     splits {

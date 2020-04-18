@@ -12,15 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".BinderActivity"></activity>
-
-        <activity android:name=".coroutines.CoroutineDemoActivity">
-
-        </activity>
+        <activity android:name=".PhoneAuthActivity"></activity>
+        <activity android:name=".BinderActivity" />
+        <activity android:name=".coroutines.CoroutineDemoActivity"></activity>
         <activity android:name=".notification.NotifActivity" />
         <activity android:name=".livedatademo.UserDetailActivity" />
-        <activity android:name=".livedatademo.LiveDataDemoActivity"></activity>
+        <activity android:name=".livedatademo.LiveDataDemoActivity" />
         <activity android:name=".DSLActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ServiceLauncherActivity">
@@ -30,9 +27,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".CustomService" android:exported="false">
 
-        </service>
+        <service
+            android:name=".CustomService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

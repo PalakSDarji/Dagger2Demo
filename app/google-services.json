@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "711323742384-24feruuaa1bs44ljd918q0oh0la4m99r.apps.googleusercontent.com",
+          "client_id": "711323742384-40pdrhbsn478oqpt4ni9ejgsi3lc83bi.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.feedr.blog.dagger2demo.paid.debug",
-            "certificate_hash": "c4c1294e57e98956afe04dabb0384da45558b502"
+            "certificate_hash": "0da50f4a88f93c848a800d8504cd934ae97e8a4c"
           }
         },
         {
@@ -36,7 +36,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "711323742384-trhha633d27gasom641kj6955tibfqha.apps.googleusercontent.com",
+              "client_id": "711323742384-2u1vrn1cb0vjr1pvdsuils1hqefmtp6p.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

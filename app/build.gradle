@@ -50,12 +50,12 @@ android {
     }
     splits {
         density {
-            enable true
+            enable false
             exclude "ldpi", "xxhdpi"
             compatibleScreens 'small', 'normal', 'large', 'xlarge'
         }
         abi {
-            enable true
+            enable false
             reset()
             include "x86", "x86_64", "armeabi"
             universalApk true
@@ -85,4 +85,5 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
     testImplementation "org.mockito:mockito-core:3.1.0"
     implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
 }

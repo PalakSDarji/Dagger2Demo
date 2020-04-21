@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/serviceLauncherActivity">
+    <activity
+        android:id="@+id/serviceLauncherActivity"
+        android:name="com.feedr.blog.dagger2demo.ServiceLauncherActivity"
+        android:label="ServiceLauncherActivity" />
+    <activity
+        android:id="@+id/binderActivity"
+        android:name="com.feedr.blog.dagger2demo.BinderActivity"
+        android:label="activity_binder"
+        tools:layout="@layout/activity_binder" />
+</navigation>
